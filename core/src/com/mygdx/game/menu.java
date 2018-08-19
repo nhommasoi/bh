@@ -16,7 +16,7 @@ public class menu implements Screen {
 
     private Game game;
     private Stage stage;
-    private TextField text;
+    //private TextField b;
 
 
 
@@ -27,18 +27,21 @@ public class menu implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         Skin skin=new Skin(Gdx.files.internal("uiskin.json"));
+
+        //tfusername=new java.awt.TextField("",skin);
+
         TextButton btnUser=new TextButton("click",skin);
 
 
 
 
-
-
-        text=new TextField(" ",skin);
-       text.setPosition(300,300);
-        text.setSize(100,200);
-        stage.addActor(text);
+        TextField b=new TextField("",skin);
+        //text=new TextField(" ",skin);
+       //text.setPosition(300,300);
+       // text.setSize(100,200);
+        //stage.addActor(text);
         stage.addActor(btnUser);
+
 
 
     }

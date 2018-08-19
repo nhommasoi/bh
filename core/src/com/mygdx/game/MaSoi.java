@@ -27,12 +27,12 @@ public class MaSoi extends Game {
 
 	@Override
 	public void create() {
-		//this.setScreen(new Room(this));
+		this.setScreen(new Room(this));
 
 		//this.setScreen(new Login(this));
 		//this.setScreen((Screen) new user(this));
 		//this.setScreen(new user(this));
-		this.setScreen(new menu(this));
+		//this.setScreen(new menu(this));
 
 	}
 
