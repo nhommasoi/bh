@@ -27,7 +27,7 @@ public class user implements Screen {
     private SpriteBatch batch;
     private Texture background;
     private Texture icon;
-    private BitmapFont font;
+
 
     private Sprite sprite;
 
@@ -53,11 +53,11 @@ public class user implements Screen {
         batch = new SpriteBatch();
         stage = new Stage();
 
-        font=new BitmapFont();
+
         background=new Texture("raw_12.jpeg");
-        //sprite=new Sprite(background);
+
         icon=new Texture("raw1.png");
-    //MaSoi.W/4-(icon.getWidth()/2), MaSoi.H/2
+
         txtid=new Label("ID :" ,skin);
         txtid.setPosition(w/2, h/2 + w/10);
         txtid.setFontScale(2f);
@@ -123,7 +123,7 @@ public class user implements Screen {
     @Override
     public void dispose () {
         batch.dispose();
-        font.dispose();
+
     }
 
     @Override
