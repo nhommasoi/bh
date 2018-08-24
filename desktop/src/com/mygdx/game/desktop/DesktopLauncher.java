@@ -9,7 +9,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
-
+		config.height=400;
+		config.width=720;
 		new LwjglApplication(new MaSoi(), config);
 	}
 }

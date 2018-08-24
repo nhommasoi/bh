@@ -14,13 +14,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 
 public class Login implements Screen {
 
-    float h,w;
+
     private Game game;
     private Stage stage;
     BitmapFont font;
@@ -43,10 +44,9 @@ public class Login implements Screen {
 
     public Login(Game game) {
 
-        skin=new Skin(Gdx.files.internal("uiskin.json"));
+        skin=new Skin(Gdx.files.internal(GameConstants.myskin));
 
-            h=Gdx.graphics.getHeight();
-            w=Gdx.graphics.getWidth();
+
         batch = new SpriteBatch();
         stage = new Stage();
         font=new BitmapFont();
@@ -61,50 +61,60 @@ public class Login implements Screen {
 
 
 
-        username = new Label("USERNAME : ",skin);
-        username.setFontScale(1f);
+        username = new Label("Username : ",skin);
+        username.setFontScale(GameConstants.font);
 
-        username.setPosition(w/2-h/2,h/2+w/20);
-        pass = new Label("PASSWORD : ",skin);
-        pass.setFontScale(1f);
+        username.setPosition(GameConstants.centerX-GameConstants.centerY,GameConstants.centerY+GameConstants.twenty_height);
+        pass = new Label("Password : ",skin);
+        pass.setFontScale(GameConstants.font);
 
-        pass.setPosition(w/2-h/2,h/2-w/20);
+        pass.setPosition(GameConstants.centerX-GameConstants.centerY,GameConstants.centerY-GameConstants.twenty_height);
 
 
 
         txtlogin =new Label("LOGIN" ,skin);
-        txtlogin.setPosition(w/2-h/10,h/2+w/6);
-        txtlogin.setFontScale(5f);
+        txtlogin.setPosition(GameConstants.centerX-GameConstants.ten_height,GameConstants.centerY+GameConstants.six_width);
+        txtlogin.setFontScale(GameConstants.big_font);
+
+
 
 
         TextButton btnin=new TextButton("sign in",skin);
-        btnin.setPosition(w/2-w/20,h/4);
-        btnin.setSize(100,60);
+        btnin.setPosition(GameConstants.centerX-GameConstants.twenty_width,GameConstants.four_height);
+        btnin.setSize(GameConstants.ten_width,GameConstants.ten_height);
 
         TextButton btnup=new TextButton("sign up",skin);
 
 
-        btnup.setPosition(w/2+w/20,h/4);
-        btnup.setSize(100,60);
+        btnup.setPosition(GameConstants.centerX+GameConstants.sixty_width,GameConstants.four_height);
+        btnup.setSize(GameConstants.ten_width,GameConstants.ten_height);
 
 
-        //tfname=new TextField("",skin);
+
 
         tfusername=new TextField("",skin);
-        tfusername.setSize(350,60);
-        tfusername.setPosition(w/2-h/6,h/2+w/20);
+        tfusername.setSize(GameConstants.four_width+GameConstants.twenty_width,GameConstants.row_height);
+        tfusername.setPosition(GameConstants.centerX-GameConstants.six_height,GameConstants.centerY+GameConstants.twenty_height);
 
         tfpasswork=new TextField("",skin);
-        tfpasswork.setPosition(w/2-h/6,h/2-w/20);
-        tfpasswork.setSize(350,60);
-
+        tfpasswork.setPosition(GameConstants.centerX-GameConstants.six_height,GameConstants.centerY-GameConstants.twenty_height);
+        tfpasswork.setSize(GameConstants.four_width+GameConstants.twenty_width,GameConstants.row_height);
+        Table table=new Table();
+        table.add(username);
+        table.add(tfusername).width(GameConstants.four_width+GameConstants.twenty_width).height(GameConstants.row_height);
+        table.add().row();
+        table.add(pass).height(GameConstants.six_height);
+        table.add(tfpasswork).width(GameConstants.four_width+GameConstants.twenty_width).height(GameConstants.row_height);
+        table.setPosition(GameConstants.centerX,GameConstants.centerY+GameConstants.sixty_height);
+        //table.setSize(GameConstants.centerX,GameConstants.centerY+GameConstants.ten_height);
 
         stage.addActor(btnin);
         stage.addActor(btnup);
-        stage.addActor(tfusername);
-        stage.addActor(tfpasswork);
-        stage.addActor(username);
-        stage.addActor(pass);
+       // stage.addActor(tfusername);
+       // stage.addActor(tfpasswork);
+        //stage.addActor(username);
+       // stage.addActor(pass);
+        stage.addActor(table);
         stage.addActor(txtlogin);
 
     }
@@ -113,6 +123,7 @@ public class Login implements Screen {
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
 
     }
 
@@ -122,15 +133,15 @@ public class Login implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
 
-        batch.draw(backgroud,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        batch.draw(backgroud,0,0,GameConstants.screenWidth,GameConstants.screenHeight);
 
 
 
 
-        batch.draw(icongoogle,w/2-h/8, h/8);
-        batch.draw(iconfb,w/2, h/8);
+        batch.draw(icongoogle,GameConstants.centerX, GameConstants.row_height,GameConstants.iconimg,GameConstants.iconimg);
+        batch.draw(iconfb,GameConstants.centerX+GameConstants.twenty_width,  GameConstants.row_height,GameConstants.iconimg,GameConstants.iconimg);
 
-        batch.draw(iconzl ,w/2+h/8, h/8);
+        batch.draw(iconzl ,GameConstants.centerX+GameConstants.ten_width,  GameConstants.row_height,GameConstants.iconimg,GameConstants.iconimg);
 
 
 

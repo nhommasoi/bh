@@ -28,6 +28,8 @@ public class MaSoi extends Game {
 	@Override
 	public void create() {
 		this.setScreen(new Room(this));
+		//this.setScreen(new User_Group(this));
+		//this.setScreen(new Signup(this));
 
 		//this.setScreen(new Login(this));
 		//this.setScreen((Screen) new user(this));

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -15,21 +16,21 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-
-
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 public class user implements Screen {
 
-    float w,h;
     private SpriteBatch batch;
     private Texture background;
     private Texture icon;
 
 
-    private Sprite sprite;
+
 
 
     private Stage stage;
@@ -38,15 +39,16 @@ public class user implements Screen {
 
     private Skin skin;
     private Label txtid,txtuser ,txtlevel , txtwin,txtlose;
-    private Label labelid,labeluser;
-    private Label labellevel ,labelwin,labellose;
+    private Label lblid,lbluser;
+    private Label lbllevel ,lblwin,lbllose;
+
 
 
 
     public  user(Game game){
-        h=Gdx.graphics.getHeight();
-        w=Gdx.graphics.getWidth();
-        skin=new Skin(Gdx.files.internal("uiskin.json"));
+
+
+        skin=new Skin(Gdx.files.internal(GameConstants.myskin));
 
 
 
@@ -59,64 +61,75 @@ public class user implements Screen {
         icon=new Texture("raw1.png");
 
         txtid=new Label("ID :" ,skin);
-        txtid.setPosition(w/2, h/2 + w/10);
-        txtid.setFontScale(2f);
 
-        labelid=new Label("0101",skin);
-        labelid.setFontScale(2f);
-        labelid.setPosition(w/2+h/4,h/2 + w/10);
+        txtid.setFontScale(GameConstants.big_font);
+
+        lblid=new Label("0101",skin);
+        lblid.setFontScale(GameConstants.big_font);
+
 
 
 
         txtuser =new Label("User :",skin);
-        txtuser.setPosition(w/2,h/2+30);
-        txtuser.setFontScale(2f);
 
-        labeluser=new Label("phu",skin);
-        labeluser.setFontScale(2f);
-       labeluser.setPosition(w/2+h/4,h/2+30);
+        txtuser.setFontScale(GameConstants.big_font);
+
+        lbluser=new Label("phu",skin);
+        lbluser.setFontScale(GameConstants.big_font);
+
 
 
 
 
 
         txtlevel=new Label("Level :",skin);
-        txtlevel.setPosition(w/2,h/2-w/20);
-        txtlevel.setFontScale(2f);
 
-        labellevel=new Label("000 ",skin);
-        labellevel.setPosition(w/2+h/4,h/2-w/20);
-        labellevel.setFontScale(2f);
+        txtlevel.setFontScale(GameConstants.big_font);
+
+        lbllevel=new Label("000 ",skin);
+
+        lbllevel.setFontScale(GameConstants.big_font);
 
 
 
         txtwin=new Label( "Win :",skin);
-        txtwin.setPosition(w/2-h/8,h/4);
-        txtwin.setFontScale(2f);
+        txtwin.setPosition(GameConstants.centerX-GameConstants.row_height,GameConstants.four_height);
+        txtwin.setFontScale(GameConstants.big_font);
 
-        labelwin=new Label( "1",skin);
-        labelwin.setPosition(w/2+h/8,h/4);
-        labelwin.setFontScale(2f);
+        lblwin=new Label( "1",skin);
+       lblwin.setPosition(GameConstants.centerX+GameConstants.row_height,GameConstants.four_height);
+        lblwin.setFontScale(GameConstants.big_font);
 
         txtlose=new Label("Lose :",skin);
-        txtlose.setPosition(w/2 +h/4,h/4);
-        txtlose.setFontScale(2f);
+        txtlose.setPosition(GameConstants.centerX+GameConstants.four_height,GameConstants.four_height);
+        txtlose.setFontScale(GameConstants.big_font);
 
-        labellose=new Label( "10",skin);
-        labellose.setPosition(w/2 +h/2,h/4);
-        labellose.setFontScale(2f);
+        lbllose=new Label( "10",skin);
+        lbllose.setPosition(GameConstants.centerX +GameConstants.centerY,GameConstants.four_height);
+        lbllose.setFontScale(GameConstants.big_font);
+
+        Table table=new Table();
+        table.setPosition(GameConstants.centerX +GameConstants.col_width , GameConstants.screenHeight-(GameConstants.four_height+GameConstants.row_height));
+        table.add(txtid).left();
+        table.add(lblid).right();
+        table.add().row();
+        table.add(txtuser).left();
+        table.add(lbluser).right();
+        table.add().row();
+        table.add(txtlevel).left();
+        table.add(lbllevel).right();
+
 
         stage=new Stage(new ScreenViewport());
-        stage.addActor(txtid);
-        stage.addActor(txtuser);
-        stage.addActor(txtlevel);
+        stage.addActor(table);
+
+
         stage.addActor(txtwin);
         stage.addActor(txtlose);
-        stage.addActor(labelid);
-        stage.addActor(labeluser);
-        stage.addActor(labellevel);
-        stage.addActor(labellose);
-        stage.addActor(labelwin);
+
+
+        stage.addActor(lbllose);
+        stage.addActor(lblwin);
 
 
     }
@@ -128,6 +141,7 @@ public class user implements Screen {
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
         
     }
 
@@ -138,10 +152,12 @@ public class user implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
-        batch.begin();
-        batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 
-        batch.draw(icon,w/4-(icon.getWidth()/2), h/2);
+        batch.begin();
+
+        batch.draw(background,0,0,GameConstants.screenWidth,GameConstants.screenHeight);
+
+        batch.draw(icon,GameConstants.screenWidth/4-(icon.getWidth()/2), GameConstants.centerY);
         batch.end();
         stage.act(delta);
         stage.draw();
