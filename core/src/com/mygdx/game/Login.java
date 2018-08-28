@@ -11,12 +11,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 
 public class Login implements Screen {
@@ -37,12 +40,12 @@ public class Login implements Screen {
     private Label txtlogin;
     private TextField tfusername;
     private TextField tfpasswork;
-
+    private  TextButton btnin;
 
 
     Skin skin;
 
-    public Login(Game game) {
+    public Login(final Game game) {
 
         skin=new Skin(Gdx.files.internal(GameConstants.myskin));
 
@@ -79,17 +82,27 @@ public class Login implements Screen {
 
 
 
-        TextButton btnin=new TextButton("sign in",skin);
+        btnin=new TextButton("sign in",skin);
         btnin.setPosition(GameConstants.centerX-GameConstants.twenty_width,GameConstants.four_height);
         btnin.setSize(GameConstants.ten_width,GameConstants.ten_height);
+        btnin.addCaptureListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new Home(game));
+            }
+        });
 
         TextButton btnup=new TextButton("sign up",skin);
 
 
         btnup.setPosition(GameConstants.centerX+GameConstants.sixty_width,GameConstants.four_height);
         btnup.setSize(GameConstants.ten_width,GameConstants.ten_height);
-
-
+        btnup.addCaptureListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                    game.setScreen(new Signup(game));
+            }
+        });
 
 
         tfusername=new TextField("",skin);
@@ -108,6 +121,8 @@ public class Login implements Screen {
         table.setPosition(GameConstants.centerX,GameConstants.centerY+GameConstants.sixty_height);
         //table.setSize(GameConstants.centerX,GameConstants.centerY+GameConstants.ten_height);
 
+
+
         stage.addActor(btnin);
         stage.addActor(btnup);
        // stage.addActor(tfusername);
@@ -124,6 +139,7 @@ public class Login implements Screen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
+
 
     }
 
@@ -174,7 +190,6 @@ public class Login implements Screen {
     public void dispose() {
 
     }
-
 
 
 

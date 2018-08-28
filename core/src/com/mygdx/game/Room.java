@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -24,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
@@ -92,7 +94,12 @@ public class Room implements Screen {
         btnchoi.setPosition(w/2+h/2,h-w/12);
         btnchoi.setSize(GameConstants.col_width,GameConstants.ten_height);
         btnchoi.setColor(Color.PINK);
-
+        btnchoi.addCaptureListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new User_Group(game));
+            }
+        });
 
 
         btnnew=new TextButton("NEW ",skin);
@@ -103,7 +110,7 @@ public class Room implements Screen {
              @Override
              public void clicked(InputEvent event, float x, float y) {
 
-                 game.setScreen(new User_Group(game));
+                 game.setScreen(new host(game));
 
              }
 

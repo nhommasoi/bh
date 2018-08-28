@@ -6,11 +6,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class Home implements Screen{
     private Game game;
@@ -24,7 +26,7 @@ public class Home implements Screen{
 
 
 
-    public  Home(Game game){
+    public  Home(final Game game){
         batch=new SpriteBatch();
         stage=new Stage();
         skin=new Skin(Gdx.files.internal(GameConstants.myskin));
@@ -50,12 +52,24 @@ public class Home implements Screen{
         btnchoi.setColor(1f,0f,1,1);
         btnchoi.setSize(GameConstants.col_width,GameConstants.ten_height);
         btnchoi.setPosition(GameConstants.centerX +GameConstants.six_width,GameConstants.centerY+GameConstants.six_height);
-
+        btnchoi.addCaptureListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new Search(game));
+            }
+        });
 
         btnchonban=new TextButton("Chon ban",skin);
         btnchonban.setPosition(GameConstants.centerX +GameConstants.six_width,GameConstants.centerY);
         btnchonban.setSize(GameConstants.col_width,GameConstants.ten_height);
         btnchonban.setColor(1f,1f,1.2f,1.5f);
+        btnchonban.addCaptureListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                    game.setScreen(new Room(game));
+            }
+        });
+
 
         Table table=new Table(skin);
         table.setColor(1,0,0,1.5f);

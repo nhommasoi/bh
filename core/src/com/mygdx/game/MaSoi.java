@@ -29,7 +29,7 @@ public class MaSoi extends Game {
 	public void create() {
 
 		//this.setScreen(new Home(this));
-		this.setScreen(new Setting(this));
+		this.setScreen(new Home(this));
 		//this.setScreen(new Setting_Room(this));
 		//this.setScreen(new Room(this));
 		//this.setScreen(new User_Group(this));
