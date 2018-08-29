@@ -143,6 +143,13 @@
 			"font": "default-font",
 			"fontColor": "white",
 			"cursor": "cursor"
+		},
+		"password": {
+			"selection": "selection",
+			"background": "textfield",
+			"font": "default-font",
+			"fontColor": "white",
+			"cursor": "cursor"
 		}
 	},
 	"com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle": {
