@@ -18,7 +18,7 @@ public class Signup implements Screen {
     private Game game;
     private Stage stage;
     private  SpriteBatch batch;
-    float h,w;
+
     Skin skin;
     private Texture background;
     private Label labeluser1,labeluser2,labeluser3,labeluser4,labelsignup;
@@ -30,14 +30,16 @@ public class Signup implements Screen {
         stage=new Stage();
 
         batch=new SpriteBatch();
-        h= Gdx.graphics.getHeight();
-        w=Gdx.graphics.getWidth();
+
         skin=new Skin(Gdx.files.internal("uiskin.json"));
         background=new Texture(Gdx.files.internal("sign_up.jpeg"));
 
 
 
-
+    }
+    @Override
+    public void show() {
+        Gdx.input.setInputProcessor(stage);
         labelsignup=new Label("sign up",skin);
         labelsignup.setFontScale(GameConstants.big_font);
         labelsignup.setPosition(GameConstants.centerX-GameConstants.twenty_width,GameConstants.screenHeight-GameConstants. six_height);
@@ -55,7 +57,7 @@ public class Signup implements Screen {
 
         tfuser=new TextField("",skin);
         tfpass=new TextField("",skin);
-        tfgainpass=new TextField("",skin);
+        tfgainpass=new TextField("",skin,"password");
         tfbirthday=new TextField("",skin);
 
 
@@ -84,17 +86,10 @@ public class Signup implements Screen {
         table.add().row();
         table.add().height(GameConstants.six_height);
         table.add(btnsansang).center().height(GameConstants.ten_height);
+
         stage.addActor(table);
-
-
         stage.addActor(labelsignup);
 
-
-
-    }
-    @Override
-    public void show() {
-        Gdx.input.setInputProcessor(stage);
 
     }
 
