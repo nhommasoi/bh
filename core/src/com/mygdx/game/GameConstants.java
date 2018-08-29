@@ -24,13 +24,13 @@ public class GameConstants {
     public static final int twenty_width=screenWidth/20;
     public static final int thirt_width=screenWidth/42;
     public static final int twenty_height=screenHeight/20;
-
+   // public static final int twenty_heighttrue=screenHeight/20;
 
     public static final int iconimg= screenHeight/15;
     public static final int big_iconimg= screenHeight/13;
     public static final int user_iconimg= screenHeight/11;
     public static final int font = screenHeight/220;
-    public static  final  int big_font = screenHeight/190;
+  public static  final  int big_font = screenHeight/190;
     public static  final  int cen_font = screenHeight/210;
 
 

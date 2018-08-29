@@ -56,14 +56,10 @@ public class Setting implements Screen{
         lblfanpage.setPosition(GameConstants.row_height,GameConstants.ten_height);
 
 
-
-
-
         lblmusic=new Label("Music",skin);
-
         lblrung=new Label("Rung",skin);
-
         lblaudio=new Label("Audio",skin);
+
         cbaudio=new CheckBox("",skin);
         cbmusic=new CheckBox("",skin);
         cbrung=new CheckBox("",skin);

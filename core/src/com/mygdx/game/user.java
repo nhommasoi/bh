@@ -49,15 +49,9 @@ public class user implements Screen {
 
 
         skin=new Skin(Gdx.files.internal(GameConstants.myskin));
-
-
-
         batch = new SpriteBatch();
         stage = new Stage();
-
-
         background=new Texture("raw_12.jpeg");
-
         icon=new Texture("raw1.png");
 
         txtid=new Label("ID :" ,skin);
@@ -67,30 +61,16 @@ public class user implements Screen {
         lblid=new Label("0101",skin);
         lblid.setFontScale(GameConstants.big_font);
 
-
-
-
         txtuser =new Label("User :",skin);
-
         txtuser.setFontScale(GameConstants.big_font);
 
         lbluser=new Label("phu",skin);
         lbluser.setFontScale(GameConstants.big_font);
 
-
-
-
-
-
         txtlevel=new Label("Level :",skin);
-
         txtlevel.setFontScale(GameConstants.big_font);
-
         lbllevel=new Label("000 ",skin);
-
         lbllevel.setFontScale(GameConstants.big_font);
-
-
 
         txtwin=new Label( "Win :",skin);
         txtwin.setPosition(GameConstants.centerX-GameConstants.row_height,GameConstants.four_height);
@@ -122,12 +102,8 @@ public class user implements Screen {
 
         stage=new Stage(new ScreenViewport());
         stage.addActor(table);
-
-
         stage.addActor(txtwin);
         stage.addActor(txtlose);
-
-
         stage.addActor(lbllose);
         stage.addActor(lblwin);
 
