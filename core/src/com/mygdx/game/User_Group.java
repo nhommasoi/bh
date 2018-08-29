@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -17,13 +18,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 public class User_Group implements Screen {
 
     private SpriteBatch batch;
-    private Texture background,icon,imggold ,user1,user2,user3,user4,user5,user6,user7,user8,user9;
+    private Texture background,icon,imggold  ,userimg;
     private Label lblTennguoichoi,lblgold;
     private TextButton btnsansang;
     private TextButton btnnext;
     private Label lbluser1,lbluser2,lbluser3,lbluser4,lbluser5,
             lbluser6,lbluser7,lbluser8,lbluser9;
     private  Label lblgold1 ,lblgold2;
+    Image image1,image2,image3,image4,image5,image6,image7,image8,image9;
 
 
     private Stage stage;
@@ -34,22 +36,63 @@ public class User_Group implements Screen {
     public  User_Group(Game game){
         stage=new Stage();
 
-    batch=new SpriteBatch();
+        batch=new SpriteBatch();
 
         skin=new Skin(Gdx.files.internal(GameConstants.myskin));
         background=new Texture(Gdx.files.internal("raw_user_group.png"));
         imggold=new Texture(Gdx.files.internal("raw_gold.jpeg"));
         icon=new Texture("raw1.png");
-        user1=new Texture(Gdx.files.internal("user_img.png"));
-        user2=new Texture(Gdx.files.internal("user_img.png"));
-        user3=new Texture(Gdx.files.internal("user_img.png"));
-        user4=new Texture(Gdx.files.internal("user_img.png"));
-        user5=new Texture(Gdx.files.internal("user_img.png"));
-        user6=new Texture(Gdx.files.internal("user_img.png"));
-        user7=new Texture(Gdx.files.internal("user_img.png"));
-        user8=new Texture(Gdx.files.internal("user_img.png"));
-        user9=new Texture(Gdx.files.internal("user_img.png"));
+        userimg = new Texture(Gdx.files.internal("user_img.png"));
+        image1 = new Image(userimg);
+        image2 = new Image(userimg);
+        image3 = new Image(userimg);
+        image4 = new Image(userimg);
+        image5 = new Image(userimg);
+        image6 = new Image(userimg);
+        image7 = new Image(userimg);
+        image8 = new Image(userimg);
+        image9 = new Image(userimg);
 
+
+
+
+
+
+
+
+    }
+
+    @Override
+    public void show() {
+        Gdx.input.setInputProcessor(stage);
+
+        image1.setSize(GameConstants.user_iconimg,GameConstants.user_iconimg);
+        image1.setPosition(GameConstants.four_width+GameConstants.four_width,GameConstants.centerY+GameConstants.four_height);
+
+        image2.setSize(GameConstants.user_iconimg,GameConstants.user_iconimg);
+        image2.setPosition(GameConstants.centerX +GameConstants.six_width,GameConstants.centerY+GameConstants.four_height);
+
+        image3.setSize(GameConstants.user_iconimg,GameConstants.user_iconimg);
+        image3.setPosition(GameConstants.screenWidth- GameConstants.six_width,GameConstants.centerY +GameConstants.four_height);
+
+
+        image4.setSize(GameConstants.user_iconimg,GameConstants.user_iconimg);
+        image4.setPosition(GameConstants.four_width+GameConstants.four_width,GameConstants.centerY+GameConstants.twenty_height);
+
+        image5.setSize(GameConstants.user_iconimg,GameConstants.user_iconimg);
+        image5.setPosition(GameConstants.centerX +GameConstants.six_width,GameConstants.centerY+GameConstants.twenty_height);
+
+        image6.setSize(GameConstants.user_iconimg,GameConstants.user_iconimg);
+        image6.setPosition(GameConstants.screenWidth- GameConstants.six_width,GameConstants.centerY+GameConstants.twenty_height);
+
+        image7.setSize(GameConstants.user_iconimg,GameConstants.user_iconimg);
+        image7.setPosition(GameConstants.four_width+GameConstants.four_width,GameConstants.four_height+GameConstants.ten_height);
+
+        image8.setSize(GameConstants.user_iconimg,GameConstants.user_iconimg);
+        image8.setPosition(GameConstants.centerX +GameConstants.six_width,GameConstants.four_height+GameConstants.ten_height);
+
+        image9.setSize(GameConstants.user_iconimg,GameConstants.user_iconimg);
+        image9.setPosition(GameConstants.screenWidth- GameConstants.six_width,GameConstants.four_height+GameConstants.ten_height);
 
 
 
@@ -122,6 +165,17 @@ public class User_Group implements Screen {
         tableuser.add(lbluser9).width(GameConstants.six_width);
 
 
+        stage.addActor(image1);
+        stage.addActor(image2);
+        stage.addActor(image3);
+        stage.addActor(image4);
+        stage.addActor(image5);
+        stage.addActor(image6);
+        stage.addActor(image7);
+        stage.addActor(image8);
+        stage.addActor(image9);
+
+
         stage.addActor(tableuser);
         stage.addActor(lblgold);
         stage.addActor(lblTennguoichoi);
@@ -130,11 +184,10 @@ public class User_Group implements Screen {
         stage.addActor(lblgold1);
         stage.addActor(lblgold2);
 
-    }
 
-    @Override
-    public void show() {
-       Gdx.input.setInputProcessor(stage);
+
+
+
 
     }
 
@@ -147,22 +200,6 @@ public class User_Group implements Screen {
         batch.draw(imggold,GameConstants.four_width,GameConstants.sixty_height,GameConstants.iconimg,GameConstants.iconimg);
         batch.draw(icon,GameConstants.sixty_width,GameConstants.ten_height,GameConstants.row_height,GameConstants.row_height);
 
-        batch.draw(user1 ,GameConstants.four_width+GameConstants.four_width,GameConstants.centerY+GameConstants.four_height,GameConstants.user_iconimg,GameConstants.user_iconimg);
-        batch.draw(user2 ,GameConstants.centerX +GameConstants.six_width,GameConstants.centerY+GameConstants.four_height,GameConstants.user_iconimg,GameConstants.user_iconimg);
-
-        batch.draw(user3 ,GameConstants.screenWidth- GameConstants.six_width,GameConstants.centerY +GameConstants.four_height,GameConstants.user_iconimg,GameConstants.user_iconimg);
-
-        batch.draw(user4 ,GameConstants.four_width+GameConstants.four_width,GameConstants.centerY+GameConstants.twenty_height,GameConstants.user_iconimg,GameConstants.user_iconimg);
-
-        batch.draw(user5 ,GameConstants.centerX +GameConstants.six_width,GameConstants.centerY+GameConstants.twenty_height,GameConstants.user_iconimg,GameConstants.user_iconimg);
-
-        batch.draw(user6 ,GameConstants.screenWidth- GameConstants.six_width,GameConstants.centerY+GameConstants.twenty_height,GameConstants.user_iconimg,GameConstants.user_iconimg);
-
-        batch.draw(user7 ,GameConstants.four_width+GameConstants.four_width,GameConstants.four_height+GameConstants.ten_height,GameConstants.user_iconimg,GameConstants.user_iconimg);
-
-        batch.draw(user8 ,GameConstants.centerX +GameConstants.six_width,GameConstants.four_height+GameConstants.ten_height,GameConstants.user_iconimg,GameConstants.user_iconimg);
-
-        batch.draw(user9 ,GameConstants.screenWidth- GameConstants.six_width,GameConstants.four_height+GameConstants.ten_height,GameConstants.user_iconimg,GameConstants.user_iconimg);
 
 
         batch.end();

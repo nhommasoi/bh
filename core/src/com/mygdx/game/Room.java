@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -24,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
@@ -81,7 +83,9 @@ public class Room implements Screen {
        imggold=new Texture(Gdx.files.internal("raw_gold.jpeg"));
        texturemid=new Texture(Gdx.files.internal("black.png"));
 
-       skin=new Skin(Gdx.files.internal("uiskin.json"));
+
+
+        skin=new Skin(Gdx.files.internal("uiskin.json"));
 
 
         batch = new SpriteBatch();
@@ -90,7 +94,12 @@ public class Room implements Screen {
         btnchoi.setPosition(w/2+h/2,h-w/12);
         btnchoi.setSize(GameConstants.col_width,GameConstants.ten_height);
         btnchoi.setColor(Color.PINK);
-
+        btnchoi.addCaptureListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new User_Group(game));
+            }
+        });
 
 
         btnnew=new TextButton("NEW ",skin);
@@ -101,7 +110,7 @@ public class Room implements Screen {
              @Override
              public void clicked(InputEvent event, float x, float y) {
 
-                 game.setScreen(new User_Group(game));
+                 game.setScreen(new host(game));
 
              }
 
@@ -145,16 +154,19 @@ public class Room implements Screen {
         lb.setFontScale(GameConstants.font);
         final Label lb1 =new Label("Ten Ban",skin);
         lb1.setFontScale(GameConstants.font);
+
         lb1.setAlignment(Align.center);
 
         final Label lb2 =new Label("Muc cuoc",skin);
         lb2.setAlignment(Align.center);
         lb2.setFontScale(GameConstants.font);
-
         final Label lb3=new Label("So nguoi ",skin);
         lb3.setAlignment(Align.right);
         lb3.setFontScale(GameConstants.font);
         lb2.setWrap(true);
+
+
+
 
         final Label text = new Label(phong.toString(), skin);
         text.setAlignment(Align.center);
@@ -165,9 +177,11 @@ public class Room implements Screen {
         text3.setAlignment(Align.center);
         text3.setFontScale(GameConstants.font);
 
+
+
         final Table scrollTable = new Table();
-        scrollTable.row().height(GameConstants.row_height);
-        scrollTable.add(lb).width(GameConstants.col_width);
+       scrollTable.row().height(GameConstants.row_height);
+      scrollTable.add(lb).width(GameConstants.col_width);
 
 
         scrollTable.add(lb1).width(GameConstants.four_width);
@@ -175,15 +189,21 @@ public class Room implements Screen {
         scrollTable.add(lb3).width(GameConstants.four_width);
         scrollTable.setFillParent(true);
         scrollTable.setPosition(0,GameConstants.four_height);
+       // scrollTable.setSize(GameConstants.screenWidth,GameConstants.four_height);
+
 
 
         final Table table = new Table();
+
+
         table.setFillParent(true);
 
         table.row();
         table.add(text);
+
         table.row();
         table.add(text3).colspan(4);
+
         table.setPosition(0,GameConstants.ten_height);
         table.setSize(GameConstants.screenWidth,GameConstants.four_height);
         table.setScale(GameConstants.four_width);
@@ -191,6 +211,7 @@ public class Room implements Screen {
 
 
         this.stage.addActor(table);
+
         stage.addActor(scrollTable);
         stage.addActor(labelgold);
         stage.addActor(lblTennguoichoi);
