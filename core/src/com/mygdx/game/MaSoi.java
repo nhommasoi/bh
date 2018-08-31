@@ -30,11 +30,11 @@ public class MaSoi extends Game {
 		//this.setScreen(new Search(this));
 
 		 // this.setScreen(new host(this));
-		//this.setScreen(new Home(this));
+		this.setScreen(new flash(this));
 		//this.setScreen(new Setting_Room(this));
 		//this.setScreen(new Room(this));
 		//this.setScreen(new User_Group(this));
-		this.setScreen(new Signup(this));
+		//this.setScreen(new Signup(this));
 
 		//this.setScreen(new Login(this));
 		//this.setScreen((Screen) new user(this));
